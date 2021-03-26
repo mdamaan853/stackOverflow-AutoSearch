@@ -11,7 +11,6 @@ def execute_and_return(cmd):
     out, err = proc.communicate()
     return out, err
 
-
 def make_request(error):
     print("Searching for "+error)
     resp  = requests.get("https://api.stackexchange.com/"+"2.2/search?order=desc&tagged=python&sort=activity&intitle={}&site=stackoverflow".format(error))
@@ -29,6 +28,9 @@ def get_urls(json_dict):
     import webbrowser
     for i in url_list:
         webbrowser.open(i)
+
+
+
 
 if __name__ == "__main__":
     out, err = execute_and_return("python test.py")
