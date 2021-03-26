@@ -30,9 +30,6 @@ def get_urls(json_dict):
     for i in url_list:
         webbrowser.open(i)
 
-
-
-
 if __name__ == "__main__":
     out, err = execute_and_return("python test.py")
     error_message = err.decode("utf-8").strip().split("\r\n")[-1]
