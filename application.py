@@ -8,12 +8,19 @@ def execute_and_return(cmd):
     """
     args = shlex.split(cmd)
     proc = Popen(args, stdout=PIPE, stderr=PIPE)
-    out, err = proc.communicate()
+    out,err = proc.communicate()
+    print(out)
     return out, err
 
 def make_request(error):
     print("Searching for "+error)
+
     resp  = requests.get("https://api.stackexchange.com/"+"2.2/search?order=desc&tagged=python&sort=activity&intitle={}&site=stackoverflow".format(error))
+
+    # resp  = requests.get("https://api.stackexchange.com/"+"/2.2/search?order=desc&sort=activity&tagged=java&intitle={}&site=stackoverflow".format(error))
+
+    # resp  = requests.get("https://api.stackexchange.com/" +
+                        # "/2.2/search?order=desc&sort=activity&tagged=c++&intitle={}&site=stackoverflow".format(error))
     return resp.json()
 
 def get_urls(json_dict):
@@ -29,12 +36,20 @@ def get_urls(json_dict):
     for i in url_list:
         webbrowser.open(i)
 
-
-
-
 if __name__ == "__main__":
-    out, err = execute_and_return("python test.py")
+    # out, err = execute_and_return("javac check.java")
+    out, err = execute_and_return("python check.py")
+    # out, err = execute_and_return("c++ check.cpp")
+   
+    # error_message = err.decode("utf-8").strip().split("\r\n")[0]
+
     error_message = err.decode("utf-8").strip().split("\r\n")[-1]
+
+    # if err:
+    #     error_message = err.decode("utf-8").strip().split("\r\n")[1]
+    # else:
+    #     error_message = err.decode("utf-8").strip().split("\r\n")[0]
+
     print(error_message)
     if error_message:
         filter_out = error_message.split(":")
