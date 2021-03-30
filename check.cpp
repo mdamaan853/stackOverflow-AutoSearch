@@ -8,7 +8,7 @@ int main()
   std::cin >> firstNumber >> secondNumber;
 
   // sum of two numbers in stored in variable sumOfTwoNumbers
-  sumOfTwoNumbers = firstNumber + "";
+  sumOfTwoNumbers = firstNumber + secondNumber;
 
   // Prints sum
   std::cout << firstNumber << " + " << secondNumber << " = " << sumOfTwoNumbers;
